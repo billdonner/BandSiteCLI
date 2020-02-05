@@ -71,7 +71,7 @@ guard CommandLine.arguments.count > 2 else { exitBadCommand(); exit(0)  }
 let dirpath = CommandLine.arguments[2]//"/Users/williamdonner/hd"
 
 let bandfacts = BandInfo(
-    crawlTags: ["china" ,"elizabeth" ,"whipping" ,"one more" ,"riders" ,"light"],
+    crawlTags: ["china" ,"elizabeth" ,"whipping" ,"one more" ,"riders" ,"light","love"],
     pathToContentDir: dirpath + "/Content",
     pathToOutputDir: dirpath + "/Resources/BigData",
     matchingURLPrefix:  "https://billdonner.com/halfdead" ,
