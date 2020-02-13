@@ -63,7 +63,7 @@ func printUsage() {
 }
 
 func exitBadCommand() {
-    print("[grubler] Bad Command ") //\(CommandLine.arguments)")
+    print("[bandsitecli] Bad Command ") //\(CommandLine.arguments)")
     printUsage()
 }
 guard CommandLine.arguments.count > 2 else { exitBadCommand(); exit(0)  }
@@ -78,19 +78,13 @@ let bandfacts = BandInfo(
     specialFolderPaths: ["/audiosessions","/favorites"],
     shortname: "ABHD" )
 
-
-    // places to test, or simply to use
-    func command_rewriter(c:String)->URL {
-        let url = URL(string:CommandLine.arguments[1])
-        guard let nrl  = url else { print("bad rooturl"); exit(0)}
-            print("[grubler] grubbing: \(nrl)")
-        return nrl
-    }
-    
+ 
 // this will run for a bit while crawlinig the internect, it generates .MD files
-generateBandSite(bandinfo:bandfacts,
-                 rewriter:command_rewriter,
+let nurl = URL(string:CommandLine.arguments[1])
+guard let url  = nurl else { print("bad rooturl"); exit(0)}
+let stats = generateBandSite(url,
+                 bandinfo:bandfacts,
                  lgFuncs: FileTypeFuncs(bandfacts:bandfacts),
                  logLevel: LOGGING_LEVEL)
-print("[grubler] all done")
+print("[bandsitecli] all done status \(stats.status)")
 
